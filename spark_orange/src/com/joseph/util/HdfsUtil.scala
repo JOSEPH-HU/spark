@@ -1,14 +1,14 @@
 package com.joseph.util
 
-import org.apache.hadoop.fs.FileSystem
-import org.apache.hadoop.fs.Path
 import org.apache.hadoop.conf.Configuration
-import org.apache.spark.deploy.SparkHadoopUtil
+import org.apache.hadoop.fs.FileSystem
+import java.io.PrintWriter
+import org.apache.hadoop.fs.Path
 import org.apache.spark.deploy.SparkHadoopUtil
 import org.apache.hadoop.fs.FileUtil
-import java.io.PrintWriter
 
 class HdfsUtil {
+  
   
   /**
    * 写入到文件
@@ -71,4 +71,5 @@ class HdfsUtil {
     val fs = path.getFileSystem(hadoopConfiguration)
     fs.getUri.toString() + path.toString()
   }
+
 }
