@@ -44,10 +44,9 @@ object PeopleData {
     log.error("男生身高为170的总数=" + highterFemal170.count())
     
     
-    val show = peopleDF.groupBy(peopleDF("gender")).count().show()
-    log.error("按照性别分组" + show)
+    peopleDF.groupBy(peopleDF("gender")).count().map { line => line(0) + "\t" + line(1) }.saveAsTextFile("/tmp/hlw")
     
-    writeText(show + " \n" + highterFemal170.count(), "/tmp/hlw.txt")
+    
     
   /*  println("=================")
     

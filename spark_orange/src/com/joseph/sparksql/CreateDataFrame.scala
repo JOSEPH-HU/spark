@@ -4,8 +4,11 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 import com.joseph.util.HdfsUtil
+import org.apache.log4j.Logger
 
 object CreateDataFrame {
+  val log = Logger.getLogger(getClass().getName())
+  
   def main(args: Array[String]): Unit = {
     val output = "/tmp/hlw/output"
     val hu = new HdfsUtil
@@ -31,6 +34,9 @@ object CreateDataFrame {
     //df.select(df("name"), df("age") + 1).map { line => line(0) + "\t" + line(1) }.saveAsTextFile(output)
     
   //  df.filter(df("age")>21).map { line => line(0) + "\t" + line(1) }.saveAsTextFile(output)
+    log.info("执行")
+    log.error("zhixing")
+    df.groupBy("age").count().map { line => line(0) + "\t" + line(1) }.foreach { line => println("age=" + line)}
     
    df.groupBy("age").count().map { line => line(0) + "\t" + line(1) }.saveAsTextFile(output)
     
